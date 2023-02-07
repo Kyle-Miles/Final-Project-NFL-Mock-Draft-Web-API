@@ -4,7 +4,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.promineo.mockdrafts.entity.MockDraft;
+import com.promineo.mockdrafts.exception.ResourceNotFoundException;
 import com.promineo.mockdrafts.repository.MockDraftRepository;
+import com.promineo.mockdrafts.utils.TeamName;
 
 @Service
 public class MockDraftServiceImpl implements MockDraftService{
@@ -28,20 +30,34 @@ public class MockDraftServiceImpl implements MockDraftService{
 
   @Override
   public MockDraft getMockDraftsById(int id) {
-    // TODO Auto-generated method stub
-    return null;
+	  return mockDraftRepository.findById(id).orElseThrow(() -> 
+	    new ResourceNotFoundException("Draft", "Id", id));
   }
 
   @Override
   public MockDraft updateMockDraft(MockDraft mockDraft, int id) {
-    // TODO Auto-generated method stub
-    return null;
+    MockDraft existingDraft = mockDraftRepository.findById(id).orElseThrow(() ->
+    	new ResourceNotFoundException("Draft", "Id", id));
+    
+    existingDraft.setTeam(mockDraft.getTeam());
+    existingDraft.setDraft(mockDraft.getDraft());
+    existingDraft.setPlayer(mockDraft.getPlayer());
+    mockDraftRepository.save(existingDraft);
+    return existingDraft;
   }
 
   @Override
   public void deleteMockDraft(int id) {
-    // TODO Auto-generated method stub
+	  MockDraft existingDraft = mockDraftRepository.findById(id).orElseThrow(() ->
+	    new ResourceNotFoundException("Draft", "Id", id));
+	    
+	  mockDraftRepository.deleteById(id);
     
   }
+
+@Override
+public List<MockDraft> getMockDraftByTeamName(TeamName name) {
+	return mockDraftRepository.findByTeamName(name);
+}
 
 }

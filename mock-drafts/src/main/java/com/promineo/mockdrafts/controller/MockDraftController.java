@@ -4,14 +4,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.promineo.mockdrafts.entity.MockDraft;
+import com.promineo.mockdrafts.entity.Player;
+import com.promineo.mockdrafts.entity.Team;
 import com.promineo.mockdrafts.service.MockDraftService;
+import com.promineo.mockdrafts.utils.TeamName;
+
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.links.Link;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -87,5 +97,158 @@ public class MockDraftController {
   public List<MockDraft> getAllMockDrafts(){
     return mockDraftService.getAllMockDrafts();
   }
+  
+  @Operation(
+		  summary = "Return a Mock Draft",
+		      description = "Returns a Mock Draft by id",
+		      responses = {
+		          @ApiResponse(
+		              responseCode = "200", 
+		              description = "A Mock Draft is returned", 
+		              content = @Content(
+		                  mediaType = "application/json", 
+		                  schema = @Schema(implementation = Player.class))),
+		          @ApiResponse(
+		              responseCode = "400", 
+		              description = "The request parameter is invalid", 
+		              content = @Content(mediaType = "application/json")),
+		          @ApiResponse(
+		              responseCode = "404", 
+		              description = "No Mock Drafts were found with the input criteria", 
+		              content = @Content(mediaType = "application/json")),
+		          @ApiResponse(
+		              responseCode = "500", 
+		              description = "An unplanned error occured.", 
+		              content = @Content(mediaType = "application/json"))
+		      },
+		      parameters = {
+		          @Parameter(
+		              name = "mock_draft_pk", 
+		              allowEmptyValue = false, 
+		              required = true, 
+		              description = "The Mock Draft primary key (i.e., '1')"),
+		      }
+		      
+		   )
+		  
+	@GetMapping("{mock_draft_pk}")
+	public ResponseEntity<MockDraft> getMockDraftById(@PathVariable("mock_draft_pk") int mock_draft_pk) {
+	  return new ResponseEntity<MockDraft>(mockDraftService.getMockDraftsById(mock_draft_pk), HttpStatus.OK);
+  	}
+  
+  @Operation(
+		  summary = "Update a Mock Draft",
+		      description = "Updates a Mock Draft by id",
+		      responses = {
+		          @ApiResponse(
+		              responseCode = "200", 
+		              description = "A Mock Draft is updated", 
+		              content = @Content(
+		                  mediaType = "application/json", 
+		                  schema = @Schema(implementation = Player.class))),
+		          @ApiResponse(
+		              responseCode = "400", 
+		              description = "The request parameter is invalid", 
+		              content = @Content(mediaType = "application/json")),
+		          @ApiResponse(
+		              responseCode = "404", 
+		              description = "No Mock Drafts were found with the input criteria", 
+		              content = @Content(mediaType = "application/json")),
+		          @ApiResponse(
+		              responseCode = "500", 
+		              description = "An unplanned error occured.", 
+		              content = @Content(mediaType = "application/json"))
+		      },
+		      parameters = {
+		          @Parameter(
+		              name = "mock_draft_pk", 
+		              allowEmptyValue = false, 
+		              required = true, 
+		              description = "The Mock Draft primary key (i.e., '1')"),
+		      }
+		      
+		   )
+  @PutMapping("{mock_draft_pk}")
+  public ResponseEntity<MockDraft> updateMockDraft(@PathVariable("mock_draft_pk") int mock_draft_pk,
+    @RequestBody MockDraft mockDraft) {
+      return new ResponseEntity<MockDraft>(mockDraftService.updateMockDraft(mockDraft, mock_draft_pk), HttpStatus.OK);
+  }
+
+  @Operation(
+		  summary = "Delete a Mock Draft",
+		      description = "Deletes a Mock Draft by id",
+		      responses = {
+		          @ApiResponse(
+		              responseCode = "200", 
+		              description = "A Mock Draft is deleted",  
+		              content = @Content(
+		                  mediaType = "application/json", 
+		                  schema = @Schema(implementation = Player.class))),
+		          @ApiResponse(
+		              responseCode = "400", 
+		              description = "The request parameter is invalid", 
+		              content = @Content(mediaType = "application/json")),
+		          @ApiResponse(
+		              responseCode = "404", 
+		              description = "No Mock Drafts were found with the input criteria", 
+		              content = @Content(mediaType = "application/json")),
+		          @ApiResponse(
+		              responseCode = "500", 
+		              description = "An unplanned error occured.", 
+		              content = @Content(mediaType = "application/json"))
+		      },
+		      parameters = {
+		          @Parameter(
+		              name = "mock_draft_pk", 
+		              allowEmptyValue = false, 
+		              required = true, 
+		              description = "The Mock Draft primary key (i.e., '1')"),
+		      }
+		      
+		   )
+  @DeleteMapping("{mock_draft_pk}")
+  public ResponseEntity<String> delete(@PathVariable("mock_draft_pk") int mock_draft_pk) {
+    mockDraftService.deleteMockDraft(mock_draft_pk);
+    return new ResponseEntity<String>("A Mock Draft is Deleted...", HttpStatus.OK);
+  }
+  
+  @Operation(
+	      summary = "Return a Mock Draft by Team",
+	      description = "Returns a Mock Draft by Team name",
+	      responses = {
+	          @ApiResponse(
+	              responseCode = "200", 
+	              description = "A team's mock drafts are returned", 
+	              content = @Content(
+	                  mediaType = "application/json", 
+	                  schema = @Schema(implementation = Team.class))),
+	          @ApiResponse(
+	              responseCode = "400", 
+	              description = "The request parameter is invalid", 
+	              content = @Content(mediaType = "application/json")),
+	          @ApiResponse(
+	              responseCode = "404", 
+	              description = "No mock drafts were found with the input criteria", 
+	              content = @Content(mediaType = "application/json")),
+	          @ApiResponse(
+	              responseCode = "500", 
+	              description = "An unplanned error occured.", 
+	              content = @Content(mediaType = "application/json"))
+	      },
+	      parameters = {
+	          @Parameter(
+	              name = "team_name", 
+	              allowEmptyValue = false,
+	              required = true,
+	              description = "The team name is (i.e., 'CARDINALS')")
+	      }
+	      
+	   ) 
+	  @GetMapping("name")
+	  public ResponseEntity<List<MockDraft>> getMockDraftByTeamName(
+	      @RequestParam(required = true) 
+	      TeamName team_name) {
+	    return new ResponseEntity<List<MockDraft>>(mockDraftService.getMockDraftByTeamName(team_name), HttpStatus.OK);
+	     }
 
 }
