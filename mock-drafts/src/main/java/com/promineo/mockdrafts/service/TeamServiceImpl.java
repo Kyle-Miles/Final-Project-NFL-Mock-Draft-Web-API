@@ -8,6 +8,7 @@ import com.promineo.mockdrafts.exception.ResourceNotFoundException;
 
 
 import com.promineo.mockdrafts.repository.TeamRepository;
+import com.promineo.mockdrafts.utils.Position;
 import com.promineo.mockdrafts.utils.TeamName;
 
 @Service
@@ -47,6 +48,11 @@ public class TeamServiceImpl implements TeamService {
   public List<Team> getTeamName(TeamName name) {
     return teamRepository.findByName(name);
   }
+
+@Override
+public List<Team> getTeamNeeds(Position needs) {
+	return teamRepository.findByNeedsPosition(needs);
+}
 
 
 

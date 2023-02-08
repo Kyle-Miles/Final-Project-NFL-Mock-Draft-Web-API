@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.promineo.mockdrafts.entity.MockDraft;
 import com.promineo.mockdrafts.exception.ResourceNotFoundException;
 import com.promineo.mockdrafts.repository.MockDraftRepository;
+import com.promineo.mockdrafts.utils.Position;
 import com.promineo.mockdrafts.utils.TeamName;
 
 @Service
@@ -58,6 +59,11 @@ public class MockDraftServiceImpl implements MockDraftService{
 @Override
 public List<MockDraft> getMockDraftByTeamName(TeamName name) {
 	return mockDraftRepository.findByTeamName(name);
+}
+
+@Override
+public List<MockDraft> getMockDraftByPosition(Position position) {
+	return mockDraftRepository.findByPlayerPosition(position);
 }
 
 }

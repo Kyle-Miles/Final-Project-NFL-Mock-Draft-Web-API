@@ -17,6 +17,7 @@ import com.promineo.mockdrafts.entity.MockDraft;
 import com.promineo.mockdrafts.entity.Player;
 import com.promineo.mockdrafts.entity.Team;
 import com.promineo.mockdrafts.service.MockDraftService;
+import com.promineo.mockdrafts.utils.Position;
 import com.promineo.mockdrafts.utils.TeamName;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -213,8 +214,8 @@ public class MockDraftController {
   }
   
   @Operation(
-	      summary = "Return a Mock Draft by Team",
-	      description = "Returns a Mock Draft by Team name",
+	      summary = "Return Mock Drafts by Team",
+	      description = "Returns Mock Drafts by Team name",
 	      responses = {
 	          @ApiResponse(
 	              responseCode = "200", 
@@ -250,5 +251,45 @@ public class MockDraftController {
 	      TeamName team_name) {
 	    return new ResponseEntity<List<MockDraft>>(mockDraftService.getMockDraftByTeamName(team_name), HttpStatus.OK);
 	     }
+  
+  @Operation(
+	      summary = "Return Mock Drafts by Position",
+	      description = "Returns Mock Drafts by position",
+	      responses = {
+	          @ApiResponse(
+	              responseCode = "200", 
+	              description = "A position's mock drafts are returned", 
+	              content = @Content(
+	                  mediaType = "application/json", 
+	                  schema = @Schema(implementation = Team.class))),
+	          @ApiResponse(
+	              responseCode = "400", 
+	              description = "The request parameter is invalid", 
+	              content = @Content(mediaType = "application/json")),
+	          @ApiResponse(
+	              responseCode = "404", 
+	              description = "No mock drafts were found with the input criteria", 
+	              content = @Content(mediaType = "application/json")),
+	          @ApiResponse(
+	              responseCode = "500", 
+	              description = "An unplanned error occured.", 
+	              content = @Content(mediaType = "application/json"))
+	      },
+	      parameters = {
+	          @Parameter(
+	              name = "position", 
+	              allowEmptyValue = false,
+	              required = true,
+	              description = "The position is (i.e., 'QB')")
+	      }
+	      
+	   ) 
+	  @GetMapping("position")
+	  public ResponseEntity<List<MockDraft>> getMockDraftByPosition(
+	      @RequestParam(required = true) 
+	      Position position) {
+	    return new ResponseEntity<List<MockDraft>>(mockDraftService.getMockDraftByPosition(position), HttpStatus.OK);
+	     }
+
 
 }

@@ -28,9 +28,9 @@ public class Needs {
   private int needs_pk;
   
 //refer to com.promineo.mockdrafts.utils.Position for enum values when mapping to API
-  @Column(value= "position_needs")
+  @Column(value= "position")
   @Enumerated(EnumType.STRING)
-  private Position position_needs;
+  private Position position;
 
   
   @ManyToMany(fetch = FetchType.EAGER,
@@ -54,12 +54,12 @@ public class Needs {
 
 
   public Position getPosition_needs() {
-    return position_needs;
+    return position;
   }
 
 
   public void setPosition_needs(Position position_needs) {
-    this.position_needs = position_needs;
+    this.position = position_needs;
   }
 
 

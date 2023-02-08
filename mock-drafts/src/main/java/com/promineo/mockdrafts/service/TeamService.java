@@ -2,6 +2,7 @@ package com.promineo.mockdrafts.service;
 
 import java.util.List;
 import com.promineo.mockdrafts.entity.Team;
+import com.promineo.mockdrafts.utils.Position;
 import com.promineo.mockdrafts.utils.TeamName;
 
 public interface TeamService {
@@ -12,5 +13,7 @@ public interface TeamService {
   public Team updateTeam(Team team, int team_pk);
   
   public List<Team> getTeamName(TeamName name);
+  
+  public List<Team> getTeamNeeds(Position needs);
 
 }
