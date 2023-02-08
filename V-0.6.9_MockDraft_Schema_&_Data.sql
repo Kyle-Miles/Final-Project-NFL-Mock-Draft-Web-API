@@ -1,4 +1,4 @@
--- VERSION 0.6.8
+-- VERSION 0.6.9
 
 USE nfldraft;
 
@@ -24,9 +24,9 @@ CREATE TABLE team (
 
 CREATE TABLE needs (
   needs_pk int unsigned NOT NULL AUTO_INCREMENT UNIQUE,
-  position_needs ENUM('QB', 'RB', 'WR', 'TE', 'T', 'G', 'C', 'CB', 'S', 'DI', 'EDGE', 'LB', 'K', 'P', 'RS', 'LS') NOT NULL UNIQUE,
+  position ENUM('QB', 'RB', 'WR', 'TE', 'T', 'G', 'C', 'CB', 'S', 'DI', 'EDGE', 'LB', 'K', 'P', 'RS', 'LS') NOT NULL UNIQUE,
   PRIMARY KEY (needs_pk),
-  UNIQUE KEY (needs_pk, position_needs)
+  UNIQUE KEY (needs_pk, position)
 );
 
 CREATE TABLE team_needs (
@@ -112,22 +112,22 @@ INSERT INTO team (name) VALUES('EAGLES'); -- 32
 
 
 -- Needs !!DONE!!
-INSERT INTO needs (position_needs) VALUES('QB'); -- 1
-INSERT INTO needs (position_needs) VALUES('RB'); -- 2
-INSERT INTO needs (position_needs) VALUES('WR'); -- 3
-INSERT INTO needs (position_needs) VALUES('TE'); -- 4
-INSERT INTO needs (position_needs) VALUES('T'); -- 5
-INSERT INTO needs (position_needs) VALUES('G'); -- 6
-INSERT INTO needs (position_needs) VALUES('C'); -- 7
-INSERT INTO needs (position_needs) VALUES('CB'); -- 8
-INSERT INTO needs (position_needs) VALUES('S'); -- 9
-INSERT INTO needs (position_needs) VALUES('DI'); -- 10
-INSERT INTO needs (position_needs) VALUES('EDGE'); -- 11
-INSERT INTO needs (position_needs) VALUES('LB'); -- 12
-INSERT INTO needs (position_needs) VALUES('K'); -- 13
-INSERT INTO needs (position_needs) VALUES('P'); -- 14
-INSERT INTO needs (position_needs) VALUES('RS'); -- 15
-INSERT INTO needs (position_needs) VALUES('LS'); -- 16
+INSERT INTO needs (position) VALUES('QB'); -- 1
+INSERT INTO needs (position) VALUES('RB'); -- 2
+INSERT INTO needs (position) VALUES('WR'); -- 3
+INSERT INTO needs (position) VALUES('TE'); -- 4
+INSERT INTO needs (position) VALUES('T'); -- 5
+INSERT INTO needs (position) VALUES('G'); -- 6
+INSERT INTO needs (position) VALUES('C'); -- 7
+INSERT INTO needs (position) VALUES('CB'); -- 8
+INSERT INTO needs (position) VALUES('S'); -- 9
+INSERT INTO needs (position) VALUES('DI'); -- 10
+INSERT INTO needs (position) VALUES('EDGE'); -- 11
+INSERT INTO needs (position) VALUES('LB'); -- 12
+INSERT INTO needs (position) VALUES('K'); -- 13
+INSERT INTO needs (position) VALUES('P'); -- 14
+INSERT INTO needs (position) VALUES('RS'); -- 15
+INSERT INTO needs (position) VALUES('LS'); -- 16
 
 
 
