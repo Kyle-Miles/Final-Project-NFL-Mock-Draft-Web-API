@@ -29,7 +29,7 @@ public enum TeamName {
   JETS, 
   EAGLES, 
   STEELERS, 
-  NINERS, 
+  FORTY_NINERS, 
   SEAHAWKS, 
   BUCCANEERS, 
   TITANS, 
