@@ -14,7 +14,7 @@ public interface TeamRepository extends JpaRepository <Team, Integer>{
 
   List<Team> findByName(TeamName name);
 
-List<Team> findByNeedsPosition(Position needs);
+  List<Team> findByNeedsPosition(Position needs);
 
 
 }
