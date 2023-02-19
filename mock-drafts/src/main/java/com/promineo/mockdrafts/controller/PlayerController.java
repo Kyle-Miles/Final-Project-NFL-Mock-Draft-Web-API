@@ -37,7 +37,7 @@ public class PlayerController {
           description = "Create Players",
           responses = {
               @ApiResponse(
-                  responseCode = "200", 
+                  responseCode = "201", 
                   description = "A player is created", 
                   content = @Content(
                       mediaType = "application/json", 

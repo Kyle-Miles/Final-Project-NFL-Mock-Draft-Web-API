@@ -1,6 +1,8 @@
 package com.promineo.mockdrafts.controller;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,7 +46,7 @@ public class MockDraftController {
           description = "Creates Mock Drafts",
           responses = {
               @ApiResponse(
-                  responseCode = "200", 
+                  responseCode = "201", 
                   description = "A Mock Draft is created", 
                   content = @Content(
                       mediaType = "application/json", 
@@ -319,15 +321,17 @@ public class MockDraftController {
 	              name = "published", 
 	              allowEmptyValue = false,
 	              required = true,
-	              description = "The time published is (i.e., '2023-02-12T20:26:47.000+00:00'")
+	              description = "The time published is (i.e., '2023-02-19 15:07:04'")
 	      }
 	      
 	   ) 
 	  @GetMapping("published")
 	  public ResponseEntity<List<MockDraft>> getMockDraftByPublished(
 	      @RequestParam(required = true) 
-	      Timestamp published) {
-	    return new ResponseEntity<List<MockDraft>>(mockDraftService.getMockDraftByPublished(published), HttpStatus.OK);
+	      String published) {
+	  			DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	  			LocalDateTime dateTime = LocalDateTime.parse(published,format);
+	  		return new ResponseEntity<List<MockDraft>>(mockDraftService.getMockDraftByPublished(dateTime),HttpStatus.OK);
 	     }
 
 

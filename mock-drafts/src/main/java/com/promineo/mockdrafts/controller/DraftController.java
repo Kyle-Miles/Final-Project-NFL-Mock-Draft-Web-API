@@ -40,7 +40,7 @@ public class DraftController {
       description = "Create a Draft Pick slot",
       responses = {
           @ApiResponse(
-              responseCode = "200", 
+              responseCode = "201", 
               description = "A draft pick slot is created", 
               content = @Content(
                   mediaType = "application/json", 

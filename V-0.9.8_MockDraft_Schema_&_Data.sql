@@ -1,4 +1,4 @@
--- VERSION 0.9.5
+-- VERSION 0.9.8
 
 USE nfldraft;
 
@@ -58,7 +58,7 @@ CREATE TABLE player (
 
 CREATE TABLE mock_draft (
   mock_draft_pk int unsigned NOT NULL AUTO_INCREMENT UNIQUE,
-  published timestamp NOT NULL DEFAULT current_timestamp,
+  published DATETIME NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   team_pk int unsigned NOT NULL,
   draft_pk int unsigned NOT NULL,
   player_pk int unsigned NOT NULL,

@@ -1,6 +1,7 @@
 package com.promineo.mockdrafts.service;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,7 +71,7 @@ public List<MockDraft> getMockDraftByPosition(Position position) {
 }
 
 @Override
-public List<MockDraft> getMockDraftByPublished(Timestamp published) {
+public List<MockDraft> getMockDraftByPublished(LocalDateTime published) {
 	return mockDraftRepository.findByPublished(published);
 }
 
