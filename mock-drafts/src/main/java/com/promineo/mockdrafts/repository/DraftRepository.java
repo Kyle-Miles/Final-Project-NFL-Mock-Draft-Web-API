@@ -7,7 +7,6 @@ import com.promineo.mockdrafts.entity.Draft;
 import com.promineo.mockdrafts.utils.DraftPick;
 import com.promineo.mockdrafts.utils.DraftRound;
 
-
 @Repository
 public interface DraftRepository extends JpaRepository<Draft, Integer>{
   

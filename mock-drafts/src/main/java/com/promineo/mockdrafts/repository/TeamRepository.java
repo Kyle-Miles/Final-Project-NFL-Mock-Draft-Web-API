@@ -8,7 +8,6 @@ import com.promineo.mockdrafts.entity.Team;
 import com.promineo.mockdrafts.utils.Position;
 import com.promineo.mockdrafts.utils.TeamName;
 
-
 @Repository
 public interface TeamRepository extends JpaRepository <Team, Integer>{
 

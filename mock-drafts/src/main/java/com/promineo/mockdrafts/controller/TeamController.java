@@ -161,7 +161,7 @@ public class TeamController {
 	              name = "position", 
 	              allowEmptyValue = false,
 	              required = true,
-	              description = "The team name is (i.e., 'CARDINALS')")
+	              description = "The team needs are (i.e., 'QB')")
 	      }
 	      
 	   )

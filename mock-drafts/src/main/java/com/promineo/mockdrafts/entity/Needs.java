@@ -14,10 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.data.relational.core.mapping.Column;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.promineo.mockdrafts.utils.Position;
-
 
 @Entity
 @Table(name= "needs")
@@ -25,31 +23,28 @@ public class Needs {
   
   @Id
   @GeneratedValue(strategy= GenerationType.AUTO)
-  private int needs_pk;
+  private int needsPk;
   
 //refer to com.promineo.mockdrafts.utils.Position for enum values when mapping to API
-  @Column(value= "position")
   @Enumerated(EnumType.STRING)
   private Position position;
 
-  
-  @ManyToMany(fetch = FetchType.EAGER,
-      cascade = {
-          CascadeType.DETACH
-      },
-      mappedBy = "needs")
+  @ManyToMany(
+	fetch = FetchType.EAGER,
+    cascade = {CascadeType.DETACH},
+    mappedBy = "needs")
   @Fetch(value=FetchMode.SELECT)
   @JsonIgnore
   private Set<Team> team = new HashSet<>();
 
 
   public int getNeeds_pk() {
-    return needs_pk;
+    return needsPk;
   }
 
 
   public void setNeeds_pk(int needs_pk) {
-    this.needs_pk = needs_pk;
+    this.needsPk = needs_pk;
   }
 
 

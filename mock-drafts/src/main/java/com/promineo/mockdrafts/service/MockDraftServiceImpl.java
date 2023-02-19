@@ -1,5 +1,6 @@
 package com.promineo.mockdrafts.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import com.promineo.mockdrafts.utils.TeamName;
 
 @Service
 public class MockDraftServiceImpl implements MockDraftService{
-  
+	
   private MockDraftRepository mockDraftRepository;
   
   @Autowired
@@ -40,6 +41,7 @@ public class MockDraftServiceImpl implements MockDraftService{
     MockDraft existingDraft = mockDraftRepository.findById(id).orElseThrow(() ->
     	new ResourceNotFoundException("Draft", "Id", id));
     
+    existingDraft.setPublished(mockDraft.getPublished());
     existingDraft.setTeam(mockDraft.getTeam());
     existingDraft.setDraft(mockDraft.getDraft());
     existingDraft.setPlayer(mockDraft.getPlayer());
@@ -49,7 +51,8 @@ public class MockDraftServiceImpl implements MockDraftService{
 
   @Override
   public void deleteMockDraft(int id) {
-	  MockDraft existingDraft = mockDraftRepository.findById(id).orElseThrow(() ->
+	  @SuppressWarnings("unused")
+	MockDraft existingDraft = mockDraftRepository.findById(id).orElseThrow(() ->
 	    new ResourceNotFoundException("Draft", "Id", id));
 	    
 	  mockDraftRepository.deleteById(id);
@@ -64,6 +67,11 @@ public List<MockDraft> getMockDraftByTeamName(TeamName name) {
 @Override
 public List<MockDraft> getMockDraftByPosition(Position position) {
 	return mockDraftRepository.findByPlayerPosition(position);
+}
+
+@Override
+public List<MockDraft> getMockDraftByPublished(Timestamp published) {
+	return mockDraftRepository.findByPublished(published);
 }
 
 }

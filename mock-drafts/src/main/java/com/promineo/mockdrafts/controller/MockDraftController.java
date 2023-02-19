@@ -1,5 +1,6 @@
 package com.promineo.mockdrafts.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,6 @@ import com.promineo.mockdrafts.utils.TeamName;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.links.Link;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -289,6 +289,45 @@ public class MockDraftController {
 	      @RequestParam(required = true) 
 	      Position position) {
 	    return new ResponseEntity<List<MockDraft>>(mockDraftService.getMockDraftByPosition(position), HttpStatus.OK);
+	     }
+  
+  @Operation(
+	      summary = "Return Mock Drafts by Time Published",
+	      description = "Returns Mock Drafts by published",
+	      responses = {
+	          @ApiResponse(
+	              responseCode = "200", 
+	              description = "A published mock drafts are returned", 
+	              content = @Content(
+	                  mediaType = "application/json", 
+	                  schema = @Schema(implementation = Team.class))),
+	          @ApiResponse(
+	              responseCode = "400", 
+	              description = "The request parameter is invalid", 
+	              content = @Content(mediaType = "application/json")),
+	          @ApiResponse(
+	              responseCode = "404", 
+	              description = "No mock drafts were found with the input criteria", 
+	              content = @Content(mediaType = "application/json")),
+	          @ApiResponse(
+	              responseCode = "500", 
+	              description = "An unplanned error occured.", 
+	              content = @Content(mediaType = "application/json"))
+	      },
+	      parameters = {
+	          @Parameter(
+	              name = "published", 
+	              allowEmptyValue = false,
+	              required = true,
+	              description = "The time published is (i.e., '2023-02-12T20:26:47.000+00:00'")
+	      }
+	      
+	   ) 
+	  @GetMapping("published")
+	  public ResponseEntity<List<MockDraft>> getMockDraftByPublished(
+	      @RequestParam(required = true) 
+	      Timestamp published) {
+	    return new ResponseEntity<List<MockDraft>>(mockDraftService.getMockDraftByPublished(published), HttpStatus.OK);
 	     }
 
 

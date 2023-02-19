@@ -1,5 +1,6 @@
 package com.promineo.mockdrafts.repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,5 +15,7 @@ public interface MockDraftRepository extends JpaRepository<MockDraft, Integer>{
 	List<MockDraft> findByTeamName(TeamName name);
 
 	List<MockDraft> findByPlayerPosition(Position position);
+
+	List<MockDraft> findByPublished(Timestamp position);
 
 }

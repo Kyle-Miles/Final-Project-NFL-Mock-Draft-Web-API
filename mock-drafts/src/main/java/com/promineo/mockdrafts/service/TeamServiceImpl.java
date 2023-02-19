@@ -49,10 +49,10 @@ public class TeamServiceImpl implements TeamService {
     return teamRepository.findByName(name);
   }
 
-@Override
-public List<Team> getTeamNeeds(Position needs) {
+  @Override
+  public List<Team> getTeamNeeds(Position needs) {
 	return teamRepository.findByNeedsPosition(needs);
-}
+  }
 
 
 

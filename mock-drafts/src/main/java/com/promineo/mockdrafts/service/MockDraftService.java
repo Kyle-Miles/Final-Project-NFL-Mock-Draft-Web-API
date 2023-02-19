@@ -1,8 +1,8 @@
 package com.promineo.mockdrafts.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import com.promineo.mockdrafts.entity.MockDraft;
-import com.promineo.mockdrafts.entity.Team;
 import com.promineo.mockdrafts.utils.Position;
 import com.promineo.mockdrafts.utils.TeamName;
 
@@ -20,6 +20,8 @@ public MockDraft saveMockDraft(MockDraft mockDraft);
   public List<MockDraft> getMockDraftByTeamName(TeamName name);
   
   public List<MockDraft> getMockDraftByPosition(Position position);
+  
+  public List<MockDraft> getMockDraftByPublished(Timestamp published);
 
 
 }

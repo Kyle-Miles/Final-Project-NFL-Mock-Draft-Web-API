@@ -10,11 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.springframework.data.relational.core.mapping.Column;
 import com.promineo.mockdrafts.utils.DraftPick;
 import com.promineo.mockdrafts.utils.DraftRound;
-
-
 
 @Entity
 @Table(name= "draft")
@@ -22,14 +19,12 @@ public class Draft {
   
   @Id
   @GeneratedValue(strategy= GenerationType.AUTO)
-  private int draft_pk;
+  private int draftPk;
   
   //refer to com.promineo.mockdrafts.utils.DraftRound for enum values when mapping to API
-  @Column(value= "round")
   @Enumerated(EnumType.STRING)
   private DraftRound round;
   
-  @Column(value= "pick")
   @Enumerated(EnumType.STRING)
   private DraftPick pick;
   
@@ -38,11 +33,11 @@ public class Draft {
 
 
   public int getDraft_pk() {
-    return draft_pk;
+    return draftPk;
   }
 
   public void setDraft_pk(int draft_pk) {
-    this.draft_pk = draft_pk;
+    this.draftPk = draft_pk;
   }
 
   public DraftRound getRound() {

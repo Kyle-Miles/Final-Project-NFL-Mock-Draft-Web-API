@@ -1,5 +1,6 @@
 package com.promineo.mockdrafts.entity;
 
+import java.sql.Timestamp;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +16,10 @@ public class MockDraft {
   
   @Id
   @GeneratedValue(strategy= GenerationType.AUTO)
-  private int mock_draft_pk;
+  private int mockDraftPk;
   
+  private Timestamp published;
+
   @ManyToOne(cascade=CascadeType.DETACH)
   @JoinColumn(name= "team_pk")
   private Team team;
@@ -30,11 +33,19 @@ public class MockDraft {
   private Draft draft;
 
   public int getMock_draft_pk() {
-    return mock_draft_pk;
+    return mockDraftPk;
   }
 
   public void setMock_draft_pk(int mock_draft_pk) {
-    this.mock_draft_pk = mock_draft_pk;
+    this.mockDraftPk = mock_draft_pk;
+  }
+  
+  public Timestamp getPublished() {
+	return published;
+  }
+
+  public void setPublished(Timestamp published) {
+	this.published = published;
   }
 
   public Team getTeam() {
@@ -60,5 +71,7 @@ public class MockDraft {
   public void setDraft(Draft draft) {
     this.draft = draft;
   }
+  
+  
 
 }
