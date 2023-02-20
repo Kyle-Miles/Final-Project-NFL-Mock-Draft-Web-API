@@ -1,6 +1,5 @@
 package com.promineo.mockdrafts.controller;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -22,7 +21,6 @@ import com.promineo.mockdrafts.entity.Team;
 import com.promineo.mockdrafts.service.MockDraftService;
 import com.promineo.mockdrafts.utils.Position;
 import com.promineo.mockdrafts.utils.TeamName;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

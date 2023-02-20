@@ -1,8 +1,6 @@
 package com.promineo.mockdrafts.entity;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
