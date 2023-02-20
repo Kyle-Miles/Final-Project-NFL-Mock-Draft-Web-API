@@ -13,7 +13,7 @@ import com.promineo.mockdrafts.utils.TeamName;
 @Repository
 public interface MockDraftRepository extends JpaRepository<MockDraft, Integer>{
 
-	List<MockDraft> findByTeamName(TeamName name);
+	List<MockDraft> findByTeamTeamName(TeamName name);
 
 	List<MockDraft> findByPlayerPosition(Position position);
 

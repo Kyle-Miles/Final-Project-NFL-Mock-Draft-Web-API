@@ -1,5 +1,8 @@
 package com.promineo.mockdrafts.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -239,5 +242,10 @@ public class PlayerController {
     playerService.deletePlayer(player_pk);
     return new ResponseEntity<String>("Player Deleted...", HttpStatus.OK);
   }
+  
+  @GetMapping("ovr_rank")
+  public List <Player> getAllPlayersByRank(){
+	  return playerService.getPlayersByOvrRank();
+	  }
 
 }

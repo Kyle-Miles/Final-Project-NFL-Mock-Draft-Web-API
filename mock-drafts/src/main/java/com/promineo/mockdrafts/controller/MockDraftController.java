@@ -247,7 +247,7 @@ public class MockDraftController {
 	      }
 	      
 	   ) 
-	  @GetMapping("name")
+	  @GetMapping("team_name")
 	  public ResponseEntity<List<MockDraft>> getMockDraftByTeamName(
 	      @RequestParam(required = true) 
 	      TeamName team_name) {

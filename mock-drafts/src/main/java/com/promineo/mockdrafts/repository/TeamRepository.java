@@ -11,7 +11,7 @@ import com.promineo.mockdrafts.utils.TeamName;
 @Repository
 public interface TeamRepository extends JpaRepository <Team, Integer>{
 
-  List<Team> findByName(TeamName name);
+  List<Team> findByTeamName(TeamName name);
 
   List<Team> findByNeedsPosition(Position needs);
 

@@ -62,7 +62,7 @@ public class MockDraftServiceImpl implements MockDraftService{
 
 @Override
 public List<MockDraft> getMockDraftByTeamName(TeamName name) {
-	return mockDraftRepository.findByTeamName(name);
+	return mockDraftRepository.findByTeamTeamName(name);
 }
 
 @Override

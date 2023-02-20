@@ -38,7 +38,6 @@ public class TeamServiceImpl implements TeamService {
     Team existingTeam = teamRepository.findById(team_pk).orElseThrow(() ->
     new ResourceNotFoundException("team", "Id", team_pk));
     
-    
     existingTeam.setNeeds(team.getNeeds());
     teamRepository.save(team);
     return existingTeam;
@@ -46,8 +45,8 @@ public class TeamServiceImpl implements TeamService {
 
   @Override
   public List<Team> getTeamName(TeamName name) {
-    return teamRepository.findByName(name);
-  }
+    return teamRepository.findByTeamName(name);
+  } 
 
   @Override
   public List<Team> getTeamNeeds(Position needs) {

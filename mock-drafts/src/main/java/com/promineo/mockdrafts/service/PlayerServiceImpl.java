@@ -1,12 +1,19 @@
 package com.promineo.mockdrafts.service;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedSet;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.promineo.mockdrafts.entity.Player;
 import com.promineo.mockdrafts.exception.ResourceNotFoundException;
 import com.promineo.mockdrafts.repository.PlayerRepository;
 import com.promineo.mockdrafts.utils.Position;
+
+import net.bytebuddy.description.type.TypeDefinition.Sort;
 
 
 @Service
@@ -61,6 +68,13 @@ public class PlayerServiceImpl implements PlayerService {
   public List <Player> getPlayersByPosition(Position position) {
     return playerRepository.findByPosition(position);
    
+  }
+
+  @Override
+  public List<Player> getPlayersByOvrRank() {
+	  
+	  
+	return playerRepository.findByOrderByOvrRankAsc();
   }
   
 

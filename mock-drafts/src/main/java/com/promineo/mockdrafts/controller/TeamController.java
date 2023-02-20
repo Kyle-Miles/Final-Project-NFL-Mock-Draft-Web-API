@@ -126,7 +126,7 @@ public class TeamController {
       }
       
    )
-  @GetMapping("name")
+  @GetMapping("team_name")
   public ResponseEntity<List<Team>> getTeamByName(
       @RequestParam(required = true) 
       TeamName team_name) {

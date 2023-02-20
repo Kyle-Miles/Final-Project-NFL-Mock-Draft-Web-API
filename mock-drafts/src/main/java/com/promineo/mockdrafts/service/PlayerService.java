@@ -16,5 +16,7 @@ public interface PlayerService {
   public Player updatePlayer(Player player, int id);
   
   public void deletePlayer(int id);
+  
+  public List <Player> getPlayersByOvrRank();
 
 }

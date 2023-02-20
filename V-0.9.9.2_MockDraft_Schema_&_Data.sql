@@ -1,4 +1,4 @@
--- VERSION 0.9.8
+-- VERSION 0.9.9.2
 
 USE nfldraft;
 
@@ -15,11 +15,13 @@ USE nfldraft;
 
 CREATE TABLE team (
   team_pk int unsigned NOT NULL AUTO_INCREMENT UNIQUE,
-  name ENUM('CARDINALS', 'FALCONS', 'RAVENS', 'BILLS', 'PANTHERS', 'BEARS', 'BENGALS', 'BROWNS', 'COWBOYS', 'BRONCOS', 
+  team_name ENUM('CARDINALS', 'FALCONS', 'RAVENS', 'BILLS', 'PANTHERS', 'BEARS', 'BENGALS', 'BROWNS', 'COWBOYS', 'BRONCOS', 
   'LIONS', 'PACKERS', 'TEXANS', 'COLTS', 'JAGUARS', 'CHIEFS', 'RAIDERS', 'CHARGERS', 'RAMS', 'DOLPHINS', 'VIKINGS', 'PATRIOTS', 
   'SAINTS', 'GIANTS', 'JETS', 'EAGLES', 'STEELERS', 'FORTY_NINERS', 'SEAHAWKS', 'BUCCANEERS', 'TITANS', 'COMMANDERS') NOT NULL UNIQUE, 
+  team_conference ENUM('AFC', 'NFC') NOT NULL,
+  team_division ENUM('WEST', 'SOUTH', 'EAST', 'NORTH') NOT NULL,
   PRIMARY KEY (team_pk),
-  UNIQUE KEY (team_pk, name)
+  UNIQUE KEY (team_pk, team_name)
 );
 
 CREATE TABLE needs (
@@ -71,45 +73,45 @@ CREATE TABLE mock_draft (
 USE nfldraft;
 
 -- Team !!DONE!!
-INSERT INTO team (name) VALUES('TEXANS'); -- 1
-INSERT INTO team (name) VALUES('JAGUARS'); -- 2
-INSERT INTO team (name) VALUES('TITANS'); -- 3
-INSERT INTO team (name) VALUES('COLTS'); -- 4
+INSERT INTO team (team_name, team_conference, team_division) VALUES('TEXANS', 'AFC', 'SOUTH'); -- 1
+INSERT INTO team (team_name, team_conference, team_division) VALUES('JAGUARS', 'AFC', 'SOUTH'); -- 2
+INSERT INTO team (team_name, team_conference, team_division) VALUES('TITANS', 'AFC', 'SOUTH'); -- 3
+INSERT INTO team (team_name, team_conference, team_division) VALUES('COLTS', 'AFC', 'SOUTH'); -- 4
 
-INSERT INTO team (name) VALUES('STEELERS'); -- 5
-INSERT INTO team (name) VALUES('RAVENS'); -- 6
-INSERT INTO team (name) VALUES('BROWNS'); -- 7
-INSERT INTO team (name) VALUES('BENGALS'); -- 8
+INSERT INTO team (team_name, team_conference, team_division) VALUES('STEELERS', 'AFC', 'NORTH'); -- 5
+INSERT INTO team (team_name, team_conference, team_division) VALUES('RAVENS', 'AFC', 'NORTH'); -- 6
+INSERT INTO team (team_name, team_conference, team_division) VALUES('BROWNS', 'AFC', 'NORTH'); -- 7
+INSERT INTO team (team_name, team_conference, team_division) VALUES('BENGALS', 'AFC', 'NORTH'); -- 8
 
-INSERT INTO team (name) VALUES('JETS'); -- 9
-INSERT INTO team (name) VALUES('DOLPHINS'); -- 10
-INSERT INTO team (name) VALUES('PATRIOTS'); -- 11
-INSERT INTO team (name) VALUES('BILLS'); -- 12
+INSERT INTO team (team_name, team_conference, team_division) VALUES('JETS', 'AFC', 'EAST'); -- 9
+INSERT INTO team (team_name, team_conference, team_division) VALUES('DOLPHINS', 'AFC', 'EAST'); -- 10
+INSERT INTO team (team_name, team_conference, team_division) VALUES('PATRIOTS', 'AFC', 'EAST'); -- 11
+INSERT INTO team (team_name, team_conference, team_division) VALUES('BILLS', 'AFC', 'EAST'); -- 12
 
-INSERT INTO team (name) VALUES('CHIEFS'); -- 13
-INSERT INTO team (name) VALUES('RAIDERS'); -- 14
-INSERT INTO team (name) VALUES('BRONCOS'); -- 15
-INSERT INTO team (name) VALUES('CHARGERS'); -- 16
+INSERT INTO team (team_name, team_conference, team_division) VALUES('CHIEFS', 'AFC', 'WEST'); -- 13
+INSERT INTO team (team_name, team_conference, team_division) VALUES('RAIDERS', 'AFC', 'WEST'); -- 14
+INSERT INTO team (team_name, team_conference, team_division) VALUES('BRONCOS', 'AFC', 'WEST'); -- 15
+INSERT INTO team (team_name, team_conference, team_division) VALUES('CHARGERS', 'AFC', 'WEST'); -- 16
 
-INSERT INTO team (name) VALUES('BEARS'); -- 17 
-INSERT INTO team (name) VALUES('VIKINGS'); -- 18 
-INSERT INTO team (name) VALUES('PACKERS'); -- 19 
-INSERT INTO team (name) VALUES('LIONS'); -- 20 
+INSERT INTO team (team_name, team_conference, team_division) VALUES('BEARS', 'NFC', 'NORTH'); -- 17 
+INSERT INTO team (team_name, team_conference, team_division) VALUES('VIKINGS', 'NFC', 'NORTH'); -- 18 
+INSERT INTO team (team_name, team_conference, team_division) VALUES('PACKERS', 'NFC', 'NORTH'); -- 19 
+INSERT INTO team (team_name, team_conference, team_division) VALUES('LIONS', 'NFC', 'NORTH'); -- 20 
 
-INSERT INTO team (name) VALUES('CARDINALS'); -- 21 
-INSERT INTO team (name) VALUES('RAMS'); -- 22 
-INSERT INTO team (name) VALUES('SEAHAWKS'); -- 23  
-INSERT INTO team (name) VALUES('FORTY_NINERS'); -- 24
+INSERT INTO team (team_name, team_conference, team_division) VALUES('CARDINALS', 'NFC', 'WEST'); -- 21 
+INSERT INTO team (team_name, team_conference, team_division) VALUES('RAMS', 'NFC', 'WEST'); -- 22 
+INSERT INTO team (team_name, team_conference, team_division) VALUES('SEAHAWKS', 'NFC', 'WEST'); -- 23  
+INSERT INTO team (team_name, team_conference, team_division) VALUES('FORTY_NINERS', 'NFC', 'WEST'); -- 24
 
-INSERT INTO team (name) VALUES('PANTHERS'); -- 25
-INSERT INTO team (name) VALUES('SAINTS'); -- 26
-INSERT INTO team (name) VALUES('BUCCANEERS'); -- 27
-INSERT INTO team (name) VALUES('FALCONS'); -- 28
+INSERT INTO team (team_name, team_conference, team_division) VALUES('PANTHERS', 'NFC', 'SOUTH'); -- 25
+INSERT INTO team (team_name, team_conference, team_division) VALUES('SAINTS', 'NFC', 'SOUTH'); -- 26
+INSERT INTO team (team_name, team_conference, team_division) VALUES('BUCCANEERS', 'NFC', 'SOUTH'); -- 27
+INSERT INTO team (team_name, team_conference, team_division) VALUES('FALCONS', 'NFC', 'SOUTH'); -- 28
 
-INSERT INTO team (name) VALUES('GIANTS'); -- 29
-INSERT INTO team (name) VALUES('COWBOYS'); -- 30
-INSERT INTO team (name) VALUES('COMMANDERS'); -- 31
-INSERT INTO team (name) VALUES('EAGLES'); -- 32
+INSERT INTO team (team_name, team_conference, team_division) VALUES('GIANTS', 'NFC', 'EAST'); -- 29
+INSERT INTO team (team_name, team_conference, team_division) VALUES('COWBOYS', 'NFC', 'EAST'); -- 30
+INSERT INTO team (team_name, team_conference, team_division) VALUES('COMMANDERS', 'NFC', 'EAST'); -- 31
+INSERT INTO team (team_name, team_conference, team_division) VALUES('EAGLES', 'NFC', 'EAST'); -- 32
 
 
 -- Needs !!DONE!!

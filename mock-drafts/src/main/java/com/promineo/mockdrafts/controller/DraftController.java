@@ -36,35 +36,6 @@ public class DraftController {
   }
   
   @Operation(
-      summary = "Create a Draft Pick",
-      description = "Create a Draft Pick slot",
-      responses = {
-          @ApiResponse(
-              responseCode = "201", 
-              description = "A draft pick slot is created", 
-              content = @Content(
-                  mediaType = "application/json", 
-                  schema = @Schema(implementation = Draft.class))),
-          @ApiResponse(
-              responseCode = "400", 
-              description = "The request parameter is invalid", 
-              content = @Content(mediaType = "application/json")),
-          @ApiResponse(
-              responseCode = "404", 
-              description = "No picks were found with the input criteria", 
-              content = @Content(mediaType = "application/json")),
-          @ApiResponse(
-              responseCode = "500", 
-              description = "An unplanned error occured.", 
-              content = @Content(mediaType = "application/json"))
-      }
-      
-   )
-  @PostMapping()
-  public ResponseEntity<Draft> saveDraft(@RequestBody (required = false) Draft draft) {
-      return new ResponseEntity<Draft>(draftService.saveDraft(draft),HttpStatus.CREATED);
-  }
-  @Operation(
       summary = "Return a list of Draft Picks",
       description = "Returns all Draft Picks",
       responses = {
@@ -215,82 +186,6 @@ public class DraftController {
   @GetMapping("{draft_pk}")
   public ResponseEntity<Draft> getDraftById(@PathVariable("draft_pk") int draft_pk) {
     return new ResponseEntity<Draft>(draftService.getDraftById(draft_pk), HttpStatus.OK);
-  }
-  
-  @Operation(
-      summary = "Update a Draft Pick",
-      description = "Updates a Draft Pick by primary key",
-      responses = {
-          @ApiResponse(
-              responseCode = "200", 
-              description = "A draft pick slot is updated", 
-              content = @Content(
-                  mediaType = "application/json", 
-                  schema = @Schema(implementation = Draft.class))),
-          @ApiResponse(
-              responseCode = "400", 
-              description = "The request parameter is invalid", 
-              content = @Content(mediaType = "application/json")),
-          @ApiResponse(
-              responseCode = "404", 
-              description = "No picks were found with the input criteria", 
-              content = @Content(mediaType = "application/json")),
-          @ApiResponse(
-              responseCode = "500", 
-              description = "An unplanned error occured.", 
-              content = @Content(mediaType = "application/json"))
-      },
-      parameters = {
-          @Parameter(
-              name = "draft_pk", 
-              allowEmptyValue = false,
-              required = true,
-              description = "The primary key is (i.e., '1')")
-          }
-      
-   )
-  @PutMapping("{draft_pk}")
-  public ResponseEntity<Draft> updateDraft(@PathVariable("draft_pk") int draft_pk ,
-    @RequestBody Draft draft) {
-      return new ResponseEntity<Draft>(draftService.updateDraft(draft, draft_pk), HttpStatus.OK);
-  }
-  
-  @Operation(
-      summary = "Delete a Draft Pick",
-      description = "Deletes a Draft Pick by primary key",
-      responses = {
-          @ApiResponse(
-              responseCode = "200", 
-              description = "A draft pick slot is deleted", 
-              content = @Content(
-                  mediaType = "application/json", 
-                  schema = @Schema(implementation = Draft.class))),
-          @ApiResponse(
-              responseCode = "400", 
-              description = "The request parameter is invalid", 
-              content = @Content(mediaType = "application/json")),
-          @ApiResponse(
-              responseCode = "404", 
-              description = "No picks were found with the input criteria", 
-              content = @Content(mediaType = "application/json")),
-          @ApiResponse(
-              responseCode = "500", 
-              description = "An unplanned error occured.", 
-              content = @Content(mediaType = "application/json"))
-      },
-      parameters = {
-          @Parameter(
-              name = "draft_pk", 
-              allowEmptyValue = false,
-              required = true,
-              description = "The primary key is (i.e., '1')")
-          }
-      
-   )
-  @DeleteMapping("{draft_pk}")
-  public ResponseEntity<String> deleteDraft(@PathVariable("draft_pk") int draft_pk) {
-    draftService.deleteDraft(draft_pk);
-    return new ResponseEntity<String>("Draft Pick PrimaryKey " + draft_pk + " Deleted...", HttpStatus.OK);
   }
 
 }

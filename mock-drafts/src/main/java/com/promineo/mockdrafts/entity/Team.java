@@ -18,6 +18,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
+import com.promineo.mockdrafts.utils.TeamConference;
+import com.promineo.mockdrafts.utils.TeamDivision;
 import com.promineo.mockdrafts.utils.TeamName;
 
 @Entity
@@ -30,9 +33,15 @@ public class Team {
   
   //refer to com.promineo.mockdrafts.utils.TeamName for enum values when mapping to API
   @Enumerated(EnumType.STRING)
-  private TeamName name;
+  private TeamName teamName; 
   
-  @ManyToMany(
+  @Enumerated(EnumType.STRING)
+  private TeamConference teamConference;
+  
+  @Enumerated(EnumType.STRING)
+  private TeamDivision teamDivision;
+
+@ManyToMany(
 	fetch = FetchType.EAGER,
     cascade = {CascadeType.DETACH})
   @Fetch(value=FetchMode.SELECT)
@@ -53,12 +62,28 @@ public class Team {
   }
 
   public TeamName getTeam_name() {
-    return name;
+    return teamName;
   }
 
   public void setTeam_name(TeamName team_name) {
-    this.name = team_name;
+    this.teamName = team_name;
   }
+  
+  public TeamConference getTeamConference() {
+	return teamConference;
+}
+
+public void setTeamConference(TeamConference team_conference) {
+	this.teamConference = team_conference;
+}
+
+public TeamDivision getTeamDivision() {
+	return teamDivision;
+}
+
+public void setTeamDivision(TeamDivision team_division) {
+	this.teamDivision = team_division;
+}
 
   public Set<Needs> getNeeds() {
     return needs;

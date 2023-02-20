@@ -9,5 +9,10 @@ import com.promineo.mockdrafts.utils.Position;
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
-  List <Player> findByPosition(Position position);
+
+List <Player> findByPosition(Position position);
+
+
+List<Player> findByOrderByOvrRankAsc();
+
 }
