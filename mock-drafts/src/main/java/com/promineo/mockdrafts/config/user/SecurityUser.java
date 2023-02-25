@@ -1,4 +1,4 @@
-package com.promineo.mockdrafts.config;
+package com.promineo.mockdrafts.config.user;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class SecurityUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

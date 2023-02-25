@@ -1,4 +1,4 @@
-package com.promineo.mockdrafts.config;
+package com.promineo.mockdrafts.config.user;
 
 import java.util.Optional;
 
@@ -12,14 +12,14 @@ import org.springframework.stereotype.Service;
 public class SecurityUserService implements UserDetailsService {
 
 	@Autowired
-	UserRepository userRepository;
+	SecurityUserRepository userRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<User> user = userRepository.findByUsername(username);
+		Optional<SecurityUser> user = userRepository.findByUsername(username);
 
 		user.orElseThrow(() -> new UsernameNotFoundException("Not found:" + username));
-		return user.map(SecurityUser::new).get();
+		return user.map(SecurityUserDetails::new).get();
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.promineo.mockdrafts.config;
+package com.promineo.mockdrafts.config.user;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class SecurityUser implements UserDetails {
+public class SecurityUserDetails implements UserDetails {
 
 	/**
 	 * 
@@ -20,7 +20,7 @@ public class SecurityUser implements UserDetails {
 	private boolean active;
 	private List<GrantedAuthority> authorities;
 
-	public SecurityUser(User user) {
+	public SecurityUserDetails(SecurityUser user) {
 		this.userName = user.getUsername();
 		this.password = user.getPassword();
 		this.active = user.isActive();
