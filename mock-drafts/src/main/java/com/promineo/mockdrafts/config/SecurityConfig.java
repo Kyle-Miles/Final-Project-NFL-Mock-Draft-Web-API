@@ -12,20 +12,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.promineo.mockdrafts.config.user.SecurityUserService;
+import com.promineo.mockdrafts.config.user.SecurityUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
-
-public class SecurityConfig extends GlobalMethodSecurityConfiguration {
+public class SecurityConfig extends GlobalMethodSecurityConfiguration{
 
 	@Autowired
-	SecurityUserService userDetailsService;
+	SecurityUserDetailsService userDetailsService;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		return http.csrf(csrf -> csrf.ignoringAntMatchers("/h2-console/**")).authorizeRequests(auth -> auth
+		return http.csrf(csrf -> csrf.ignoringAntMatchers("/h2-console/**", "/nfldraft/**")).authorizeRequests(auth -> auth
+				.antMatchers("/admin").hasRole("ADMIN")
+				.antMatchers("/user").hasAnyRole("ADMIN", "USER")
 				.antMatchers("/h2-console/**").permitAll().mvcMatchers("/").permitAll().anyRequest().authenticated())
 				.userDetailsService(userDetailsService).headers(headers -> headers.frameOptions().sameOrigin())
 				.formLogin(Customizer.withDefaults()).build();

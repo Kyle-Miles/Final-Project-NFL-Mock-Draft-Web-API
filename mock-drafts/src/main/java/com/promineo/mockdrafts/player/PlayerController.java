@@ -30,6 +30,7 @@ public class PlayerController {
     super();
     this.playerService = playerService;
   }
+  
   @Operation(
       summary = "Create a Player",
           description = "Create Players",
@@ -59,6 +60,7 @@ public class PlayerController {
           }
           
        )
+  
   @PostMapping()
   public ResponseEntity<Player> savePlayer(@RequestBody Player player) {
       return new ResponseEntity<Player>(playerService.savePlayer(player),HttpStatus.CREATED);

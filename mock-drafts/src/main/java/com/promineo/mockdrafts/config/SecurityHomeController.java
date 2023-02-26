@@ -1,11 +1,12 @@
-package com.promineo.mockdrafts.config.user;
+package com.promineo.mockdrafts.config;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
-public class SecurityUserController {
+public class SecurityHomeController {
 
 	@GetMapping("/")
 	public String home() {
@@ -91,7 +92,7 @@ public class SecurityUserController {
 				+ "<body> "
 				+ "<body style=\"background-color:black;\">"
 				+ "<p style=\"color:white;\">"
-				+ "You now have </p>"
+				+ "You now have </p>"  
 				+ "<p style=\"color:#5099ff;\">"
 				+ "GET </p>"
 				+ "<p style=\"color:#50c878;\">"
@@ -116,4 +117,5 @@ public class SecurityUserController {
 				+ "</script>"
 				+ "</body>");
 	}
+	
 }

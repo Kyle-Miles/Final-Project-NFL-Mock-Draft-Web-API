@@ -14,7 +14,8 @@ public class SecurityUserDetails implements UserDetails {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4465512143955090835L;
+	private static final long serialVersionUID = -7758482361199364469L;
+
 	private String userName;
 	private String password;
 	private boolean active;
