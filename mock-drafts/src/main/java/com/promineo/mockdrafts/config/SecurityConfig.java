@@ -24,10 +24,7 @@ public class SecurityConfig extends GlobalMethodSecurityConfiguration{
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		return http.csrf(csrf -> csrf.ignoringAntMatchers("/h2-console/**", "/nfldraft/**")).authorizeRequests(auth -> auth
-				.antMatchers("/admin").hasRole("ADMIN")
-				.antMatchers("/user").hasAnyRole("ADMIN", "USER")
-				.antMatchers("/h2-console/**").permitAll().mvcMatchers("/").permitAll().anyRequest().authenticated())
+		return http.csrf(csrf -> csrf.ignoringAntMatchers("/nfldraft/player/**", "/nfldraft/team/**", "/nfldraft/mock_draft/**", "/nfldraft/team_needs/**"))
 				.userDetailsService(userDetailsService).headers(headers -> headers.frameOptions().sameOrigin())
 				.formLogin(Customizer.withDefaults()).build();
 	}
