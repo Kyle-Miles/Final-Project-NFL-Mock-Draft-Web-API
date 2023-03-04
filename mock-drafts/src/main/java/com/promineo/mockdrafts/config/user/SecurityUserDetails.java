@@ -4,22 +4,19 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class SecurityUserDetails implements UserDetails {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7758482361199364469L;
 
 	private String userName;
 	private String password;
 	private boolean active;
 	private List<GrantedAuthority> authorities;
+	
 
 	public SecurityUserDetails(SecurityUser user) {
 		this.userName = user.getUsername();

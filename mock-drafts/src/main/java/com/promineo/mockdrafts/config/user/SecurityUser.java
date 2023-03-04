@@ -42,8 +42,8 @@ public class SecurityUser {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public CharSequence setPassword(String password) {
+		return this.password = password;
 	}
 
 	public boolean isActive() {
