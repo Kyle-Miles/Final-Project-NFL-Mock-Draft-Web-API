@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Service
 public class SecurityUserDetailsService implements UserDetailsService {
 
@@ -34,7 +36,9 @@ public class SecurityUserDetailsService implements UserDetailsService {
 	}
 	
 	public SecurityUser saveUser(SecurityUser user) {
-		String password = getPasswordEncoder().encode(user.getPassword()).toString();;
+		String username = getPasswordEncoder().encode(user.getUsername()).toString();
+		user.setUsername(username);
+		String password = getPasswordEncoder().encode(user.getPassword()).toString();
 		user.setPassword(password);
 		return userRepository.save(user);	
 	}

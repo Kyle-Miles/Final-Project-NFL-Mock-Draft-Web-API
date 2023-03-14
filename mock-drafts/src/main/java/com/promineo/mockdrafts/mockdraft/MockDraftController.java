@@ -362,7 +362,6 @@ public class MockDraftController {
 	  			DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	  			LocalDateTime dateTime = LocalDateTime.parse(published,format);
 	  		return new ResponseEntity<List<MockDraft>>(mockDraftService.getMockDraftByPublished(dateTime),HttpStatus.OK);
-	     }
-
+	     }                                                                                                                                                                            
 
 }
